@@ -14,6 +14,7 @@ class Squad {
     processRequests() {
       while (this.queue.length > 0 && this.processing.length < this.maxConcurrentRequests) {
         const request = this.queue.shift();
+        console.log(request) // Requests received
         this.processing.push(request);
         this.processRequest(request);
       }
@@ -24,7 +25,7 @@ class Squad {
         console.log(`[${this.name}] Processed request:`, request);
         this.processing = this.processing.filter(req => req !== request);
         this.processRequests();
-      }, 2000); // Simulando o tempo de processamento
+      }, 8000); // Simulating processing time (8 seconds)
     }
 }
 
