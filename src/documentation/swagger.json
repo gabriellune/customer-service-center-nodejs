@@ -1,0 +1,71 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Customer Service Center",
+        "description": "API to manage customer requests",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api",
+            "description": "Test API"
+        }
+    ],
+    "paths": {
+        "/process-request":{
+            "post":{
+                "summary": "Process Request",
+                "description": "This route is responsible to receive customer requests.(By default it will always be other subjects)",
+                "tags": [
+                    "Process Requests"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "SUCCESS",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Request": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "type": "string",
+                        "example": "(CARD_PROBLEM, ANOTHER_SUBJECT or LOAN_CONTRACTING)"
+                    },
+                    "data": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
